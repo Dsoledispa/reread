@@ -7,15 +7,16 @@ $psswd=$_REQUEST['password'];
 
 $email=mysqli_real_escape_string($conn,$email);
 
-$user = mysqli_query($conn,"SELECT * FROM Users WHERE Email='$email' and Pass=MD5('{$psswd}')");
+$user = mysqli_query($conn,"SELECT * FROM users WHERE Email='$email' and Pass='$psswd'");
 
 if (mysqli_num_rows($user) == 1){
     // coincidencia de credenciales
     session_start();
     $_SESSION ['email']=$email;
-    //header("location: ../view/zona.admin.php");
+    header("location: ../view/zona.admin.php");
 }else{
     //usuario o contraseña erroneos
+    echo "No funciona";
     header("location: ../view/login.html");
 }
 
